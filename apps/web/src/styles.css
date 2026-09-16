@@ -25,3 +25,16 @@ h1 { max-width: 600px; margin: 12px 0 16px; font-size: clamp(3rem, 8vw, 6.5rem);
 .status-card { display: flex; gap: 14px; align-items: flex-start; max-width: 520px; margin-top: 32px; padding: 20px; border: 1px solid #223653; border-radius: 16px; background: #0d1a2d; }
 .status-card p { margin: 6px 0 0; color: #91a2ba; line-height: 1.5; }
 .status-dot { width: 10px; height: 10px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #63d6b1; box-shadow: 0 0 16px #63d6b1; }
+
+.auth-card { width: min(100%, 460px); margin: auto; padding: 32px; border: 1px solid #223653; border-radius: 20px; background: #0d1a2d; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22); }
+.auth-card h2 { margin: 8px 0; font-size: 2rem; letter-spacing: -0.04em; }
+.auth-copy { color: #a7b4c8; line-height: 1.5; }
+.setup-note, .form-message { padding: 12px; border-radius: 10px; color: #f5d28b; background: #2c2514; line-height: 1.45; }
+form { display: grid; gap: 16px; margin-top: 24px; }
+label { display: grid; gap: 7px; color: #c7d2e2; font-size: 0.9rem; font-weight: 600; }
+input { width: 100%; padding: 12px 13px; border: 1px solid #304966; border-radius: 9px; color: #e8eef8; background: #08111f; font: inherit; }
+input:focus { outline: 2px solid #63d6b1; outline-offset: 1px; }
+button { padding: 12px 16px; border: 0; border-radius: 9px; color: #07131f; background: #63d6b1; cursor: pointer; font: inherit; font-weight: 700; }
+button:disabled { cursor: wait; opacity: 0.6; }
+.link-button { margin-top: 18px; padding: 0; color: #63d6b1; background: transparent; font-size: 0.9rem; }
+.secondary-button { margin-top: 22px; color: #d9e4f3; background: #1a2a42; }

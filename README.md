@@ -12,6 +12,20 @@ Phase 1 establishes the monorepo foundation:
 - Type-checking, linting, tests, and production builds
 - GitHub Actions CI on every push and pull request
 
+## Phase 2
+
+Phase 2 adds the security foundation:
+
+- Supabase Auth client wiring in the web app
+- Organization and membership tables
+- Application roles and permissions
+- PostgreSQL RLS policies for tenant isolation
+- A protected `create_organization` database function
+
+The migration is in `supabase/migrations/20260916190000_phase_2_security_foundation.sql`. Review it before applying it to a Supabase project.
+
+Copy `.env.example` to `.env` and provide `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` to activate authentication.
+
 ## Local development
 
 Requirements: Node.js 20 or newer.
