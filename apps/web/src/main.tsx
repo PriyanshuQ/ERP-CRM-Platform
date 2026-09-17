@@ -1,7 +1,9 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import type { Session } from "@supabase/supabase-js";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthScreen } from "./features/auth/AuthScreen";
+import { CustomerPage } from "./features/customers/CustomerPage";
 import { isSupabaseConfigured, supabase } from "./lib/supabase";
 import "./styles.css";
 
@@ -17,6 +19,7 @@ function App() {
   }, []);
 
   if (isSupabaseConfigured && !session) return <AuthScreen />;
+  if (session) return <CustomerPage />;
 
   return (
     <main className="shell">
@@ -26,11 +29,10 @@ function App() {
       <div className="status-card">
         <span className="status-dot" aria-hidden="true" />
         <div>
-          <strong>{session ? `Signed in as ${session.user.email ?? "user"}` : "Supabase connection pending"}</strong>
-          <p>{session ? "The next step is creating your first organization." : "Configure Supabase credentials to activate authentication."}</p>
+          <strong>Supabase connection pending</strong>
+          <p>Configure Supabase credentials to activate authentication.</p>
         </div>
       </div>
-      {session && <button className="secondary-button" type="button" onClick={() => void supabase?.auth.signOut()}>Sign out</button>}
     </main>
   );
 }
@@ -41,4 +43,8 @@ if (!root) {
   throw new Error("Root element was not found");
 }
 
-createRoot(root).render(<StrictMode><App /></StrictMode>);
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: 30_000, retry: 1 } }
+});
+
+createRoot(root).render(<StrictMode><QueryClientProvider client={queryClient}><App /></QueryClientProvider></StrictMode>);
