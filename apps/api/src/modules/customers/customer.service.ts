@@ -12,8 +12,9 @@ const throwDatabaseError = (error: { message: string; code?: string }): never =>
 
 export async function listCustomers(client: CustomerClient, input: CustomerListInput) {
   const from = (input.page - 1) * input.pageSize;
+  const safeSearch = input.search.replace(/[%,()]/g, "");
   let query = client.from("customers").select("*", { count: "exact" }).order("created_at", { ascending: false }).range(from, from + input.pageSize - 1);
-  if (input.search) query = query.or(`name.ilike.%${input.search}%,company.ilike.%${input.search}%,email.ilike.%${input.search}%`);
+  if (safeSearch) query = query.or(`name.ilike.%${safeSearch}%,company.ilike.%${safeSearch}%,email.ilike.%${safeSearch}%`);
   if (input.status) query = query.eq("status", input.status);
 
   const { data, count, error } = await query;

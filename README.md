@@ -47,3 +47,24 @@ npm run check
 ## Architecture direction
 
 The project starts as a modular monolith. The API will own business rules and integrations, while Supabase will provide PostgreSQL, Auth, Row-Level Security, and migrations. Organization membership and permissions will be introduced before business modules so tenant isolation is part of the foundation.
+
+## Final MVP phase
+
+The final MVP foundation adds:
+
+- Inventory, warehouses, stock movements, and inventory levels
+- Invoices and invoice items
+- Customer activities
+- AI generation job records
+- Audit logs
+- Helmet, compression, rate limiting, and readiness checks
+- Dockerfiles and Docker Compose packaging
+
+Read the complete architecture and request flows in [docs/system-design.md](docs/system-design.md).
+
+Build the containers with:
+
+```bash
+docker compose build
+docker compose up
+```
